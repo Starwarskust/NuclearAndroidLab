@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="activityA">#f44336</color>
+    <color name="activityB">#afee91</color>
+    <color name="activityC">#81bbff</color>
+    <color name="gold">#ffd700</color>
 </resources>
