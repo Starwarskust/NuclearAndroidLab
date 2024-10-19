@@ -3,8 +3,12 @@
     <string name="activityA_name">ActivityA</string>
     <string name="activityB_name">ActivityB</string>
     <string name="activityC_name">ActivityC</string>
+    <string name="fragmentBA_name">FragmentBA</string>
+    <string name="fragmentBB_name">FragmentBB</string>
     <string name="open_activityA">Open ActivityA</string>
     <string name="open_activityB">Open ActivityB</string>
     <string name="open_activityC">Open ActivityC</string>
     <string name="open_fragmentB">Open FragmentB</string>
+    <string name="open_fragmentBB">Open\nFragmentBB</string>
+    <string name="send_color">SendColor</string>
 </resources>

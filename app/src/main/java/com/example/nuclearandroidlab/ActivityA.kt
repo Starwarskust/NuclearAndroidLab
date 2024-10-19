@@ -1,12 +1,13 @@
 package com.example.nuclearandroidlab
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 
-class ActivityA : ComponentActivity() {
+class ActivityA : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("LogMessage", "ActivityA: onCreate has called")
@@ -22,7 +23,15 @@ class ActivityA : ComponentActivity() {
 
         val buttonFragment = findViewById<Button>(R.id.button_open_fragmentB)
         buttonFragment.setOnClickListener {
-            buttonFragment.setText("I was pushed")
+            val transaction = this.supportFragmentManager.beginTransaction()
+            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                transaction.add(R.id.container_fragment, FragmentBA())
+            } else {
+                transaction.add(R.id.container_fragmentBA, FragmentBA())
+                transaction.add(R.id.container_fragmentBB, FragmentBB())
+            }
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
     }
 
@@ -36,11 +45,8 @@ class ActivityA : ComponentActivity() {
         Log.d("LogMessage", "ActivityA: onNewIntent has called")
     }
 
-//    override fun onBackPressed() {
-//        super.onBackPressed()
-//        Log.d("LogMessage", "ActivityA: onBackPressed has called")
-//        val intent = Intent(this, ActivityC::class.java)
-//            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//        startActivity(intent)
-//    }
+    companion object {
+        const val COLOR_BUNDLE = "COLOR_BUNDLE"
+        const val BACKGROUND_COLOR = "BACKGROUND_COLOR"
+    }
 }
