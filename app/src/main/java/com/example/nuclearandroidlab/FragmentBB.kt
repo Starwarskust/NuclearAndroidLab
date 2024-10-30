@@ -3,13 +3,14 @@ package com.example.nuclearandroidlab
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.example.nuclearandroidlab.ActivityA.Companion.BACKGROUND_COLOR
-import com.example.nuclearandroidlab.ActivityA.Companion.COLOR_BUNDLE
+import com.example.nuclearandroidlab.ColorKeys.Companion.BACKGROUND_COLOR_KEY
+import com.example.nuclearandroidlab.ColorKeys.Companion.COLOR_BUNDLE
 import kotlin.random.Random
 
 class FragmentBB : Fragment() {
@@ -18,6 +19,7 @@ class FragmentBB : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d("LogMessage", "FragmentBB : onCreateView has called")
         return inflater.inflate(R.layout.fragment_bb, container, false)
     }
 
@@ -29,15 +31,14 @@ class FragmentBB : Fragment() {
             val rnd = Random.Default
             val color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
             val colorBundle = Bundle()
-            colorBundle.putInt(BACKGROUND_COLOR, color)
+            colorBundle.putInt(BACKGROUND_COLOR_KEY, color)
             parentFragmentManager.setFragmentResult(COLOR_BUNDLE, colorBundle)
 
             if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
                 val transaction = parentFragmentManager.beginTransaction()
-                transaction.replace(R.id.container_fragment, FragmentBA())
+                transaction.replace(R.id.container_fragmentBA, FragmentBA())
                 transaction.commit()
             }
-
         }
     }
 }
